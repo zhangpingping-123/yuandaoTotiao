@@ -58,13 +58,23 @@ activated() {}, //如果页面有keep-alive缓存功能，这个函数会触发
       width: 100%;
       height: 100%;
       background-color: white;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-around;
     .content-text {
-        font-size:12px ;
+        font-size:12px;
+        text-align: center;
     }
 
     .userLogin-button {
         width: 240px;
         height: 40px;
+        background-color: var(--themeColor);
+        color: white;
+        text-align: center;
+        line-height: 40px;
+        border-radius: 5px;
     }
   }
 }
