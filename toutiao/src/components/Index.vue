@@ -13,7 +13,11 @@
             <Nav></Nav>
         </div>
         <!-- 左侧导航栏结束 -->
-        <div class="middle"></div>
+        <div class="middle">
+            <!-- 发布框开始 -->
+            <Post></Post>
+            <!-- 发布框结束 -->
+        </div>
         <div class="right">
             <!-- 搜索框开始 -->
             <div class="toutiao-search">
@@ -41,13 +45,16 @@ import Nav from "../components/nav/Nav"
 import SearchInput from "../components/login/SearchInput"
 //引入用户登录框组件
 import UserLogin from "../components/login/UserLogin"
+//引入发布框组件
+import Post from "../components/post/Post"
 export default {
 //import引入的组件需要注入到对象中才能使用
 components: {
     Header,
     Nav,
     SearchInput,
-    UserLogin
+    UserLogin,
+    Post,
 },
 data() {
 //这里存放数据
@@ -85,21 +92,20 @@ activated() {}, //如果页面有keep-alive缓存功能，这个函数会触发
         width: 100%;
        .toutiao-content {
            width: 100%;
-           padding: 10px 8% 0px 15%;
+           padding: 10px 8% 0px 8%;
            border: 1px solid #ddd;
            display: flex;
             .left {
-                flex: 1;
+               width: 200px;
 
             }
 
             .middle {
-                flex: 3;
-                background: #ddd;
+                flex: 1;
             }
 
             .right {
-                flex: 2;
+                width: 350px;
                 padding: 0 20px;
 
                 .toutiao-user {
