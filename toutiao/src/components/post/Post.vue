@@ -17,7 +17,7 @@
         <div class="bottom">
             <div class="imgButton">
                 <i class="iconfont icon-picture"></i>
-                <span>图片</span>
+                <div class="imgButton-tiitle" @click.stop="toggleUpImgbutton">图片</div>
             </div>
             <div class="wTouTiao-release">发布</div>
         </div>
@@ -45,6 +45,8 @@ return {
         text:"写文章"
     }],
     activeTab:"wTouTiao",
+    showUpImgbutton: false,
+    upImg:[],
 };
 },
 //监听属性 类似于data概念
@@ -55,6 +57,9 @@ watch: {},
 methods: {
     clickTab:function(tabId){
         this.activeTab = tabId;
+    },
+    toggleUpImgbutton:function(){
+        this.showUpImgbutton = !showUpImgbutton
     }
 },
 //生命周期 - 创建完成（可以访问当前this实例）
@@ -109,6 +114,9 @@ activated() {}, //如果页面有keep-alive缓存功能，这个函数会触发
       align-items: center;
     
     .imgButton {
+        .imgButton-tiitle{
+
+        }
        .icon-picture{
            font-size: 20px;
        } 
