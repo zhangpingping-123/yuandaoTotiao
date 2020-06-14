@@ -23,8 +23,9 @@
               <input type="file" multiple @change="handleImgbutton" accept=".jpg, .png" />
             </div>
             <!-- 上传图片的地方开始 -->
-            <div class="img-item" v-for="img in upImgs" :key="img">
+            <div class="img-item" v-for="(img,index) in upImgs" :key="img">
               <img :src="img" alt />
+              <div class="deleteImg" @click.stop="deleteImg(index)">x</div>
             </div>
             <!-- 上传图片的地方结束 -->
           </div>
@@ -32,7 +33,11 @@
         <div class="wTouTiao-release">发布</div>
       </div>
     </div>
-    <div class="post-text" v-show="activeTab=='article'">写文章</div>
+    <div class="post-text" v-show="activeTab=='article'">
+      <input class="post-text-input" type="text" placeholder="请输入内容" />
+      <vue-editor v-model="richContent" class="rich-editor" />
+      <div class="rich-publish">发布</div>
+    </div>
     <!-- 文章输入结束 -->
   </div>
 </template>
@@ -41,9 +46,13 @@
 //这里可以导入其他文件（比如：组件，工具js，第三方插件js，json文件，图片文件等等）
 //例如：import 《组件名称》 from '《组件路径》';
 
+//引用富文本
+import { VueEditor } from "vue2-editor";
 export default {
   //import引入的组件需要注入到对象中才能使用
-  components: {},
+  components: {
+    VueEditor
+  },
   data() {
     //这里存放数据
     return {
@@ -59,7 +68,8 @@ export default {
       ],
       activeTab: "wTouTiao",
       showUpImgbutton: false,
-      upImgs:[],
+      upImgs: [],
+      richContent: "" //富文本编辑器的内容
     };
   },
   //监听属性 类似于data概念
@@ -68,6 +78,10 @@ export default {
   watch: {},
   //方法集合
   methods: {
+    //删除上传照片事件
+    deleteImg: function(index) {
+      this.upImgs.splice(index, 1);
+    },
     //图片文件上传事件
     handleImgbutton: function(e) {
       Array.from(e.target.files).forEach(f => {
@@ -76,7 +90,7 @@ export default {
 
         //发请求
         this.$axios.post("/aliossUpload", params).then(res => {
-            console.log(res)
+          console.log(res);
           this.upImgs.push(res.url);
         });
       });
@@ -109,7 +123,7 @@ export default {
   .post-tabs {
     width: 100%;
     display: flex;
-
+    zoom: 1;
     .tabs-item {
       width: 100px;
       font-size: 14px;
@@ -126,6 +140,7 @@ export default {
   .post-text {
     width: 100%;
     padding: 10px;
+
     .text-input {
       width: 100%;
       border: 1px solid #ddd;
@@ -138,7 +153,7 @@ export default {
       align-items: center;
 
       .imgButton {
-          position: relative;
+        position: relative;
 
         .imgButton-tiitle {
           font-size: 16px;
@@ -148,49 +163,69 @@ export default {
           font-size: 20px;
         }
         .upload-img {
-            width: 350px;
-            border:1px solid #ddd;
-            position: absolute;
-            padding: 15px;
-            border-radius: 5px;
-            display: flex;
-            flex-wrap: wrap;
-            
+          width: 350px;
+          border: 1px solid #ddd;
+          position: absolute;
+          padding: 15px;
+          border-radius: 5px;
+          display: flex;
+          flex-wrap: wrap;
+
           .upImg {
+            width: 100px;
+            height: 100px;
+            border-radius: 5px;
+            border: 1px dashed #ddd;
+            background-color: white;
+
+            .title {
+              font-size: 40px;
+              font-weight: 600;
+              color: #ddd;
               width: 100px;
               height: 100px;
-              border-radius: 5px;
-              border: 1px dashed #ddd;
-              background-color: white;
-             
-            .title {
-                font-size: 40px;
-                font-weight: 600;
-                color: #ddd;
-                width: 100px;
-                height: 100px;
-                line-height: 100px;
-                text-align: center;
+              line-height: 100px;
+              text-align: center;
             }
 
             input {
-                opacity: 0;
-                width: 100px;
-                height: 100px;
-                position: absolute;
-                top: 15px;
-                left: 15px;               
+              opacity: 0;
+              width: 100px;
+              height: 100px;
+              position: absolute;
+              top: 15px;
+              left: 15px;
             }
           }
 
           .img-item {
-              display: flex;
-              width: 100px;
-              height: 100px;
-              padding: 5px;
+            display: flex;
+            width: 100px;
+            height: 100px;
+            padding: 5px;
+            position: relative;
             img {
-                width: 100%;
-                height: 100%;
+              width: 100%;
+              height: 100%;
+            }
+
+            .deleteImg {
+              font-size: 40px;
+              font-weight: 600;
+              display: none;
+              position: absolute;
+              top: 50%;
+              left: 50%;
+              transform: translate(-50%, -50%);
+            }
+            &:hover {
+              background-color: #7f7f7f;
+              opacity: 0.8;
+              transition: all 0.5s;
+              .deleteImg {
+                color: white;
+                display: block;
+              }
             }
           }
         }
@@ -204,6 +239,33 @@ export default {
         background-color: var(--themeColor);
         text-align: center;
       }
+    }
+
+    .post-text-input {
+      font-size: 24px;
+      width: 100%;
+      height: 100px;
+      border: none;
+    }
+
+    .rich-editor {
+    }
+    .rich-publish {
+      width: 150px;
+      height: 40px;
+      text-align: center;
+      line-height: 40px;
+      background-color: var(--themeColor);
+      float: right;
+      font-size: 16px;
+      color: white;
+    }
+    &:after{
+       content: "";
+        display: block;
+        height: 0;
+        clear:both;
+        visibility: hidden;
     }
   }
 }
