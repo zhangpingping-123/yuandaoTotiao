@@ -17,6 +17,9 @@
             <!-- 发布框开始 -->
             <Post></Post>
             <!-- 发布框结束 -->
+            <!-- 文章列表开始 -->
+            <NewsList></NewsList>
+            <!-- 文章列表结束 -->
         </div>
         <div class="right">
             <!-- 搜索框开始 -->
@@ -38,15 +41,17 @@
 //这里可以导入其他文件（比如：组件，工具js，第三方插件js，json文件，图片文件等等）
 //例如：import 《组件名称》 from '《组件路径》';
 //引入header组件
-import Header from "../components/herder/Header"
+import Header from "../components/herder/Header";
 //引入nav组件
-import Nav from "../components/nav/Nav"
+import Nav from "../components/nav/Nav";
 //引入搜索框组件
-import SearchInput from "../components/login/SearchInput"
+import SearchInput from "../components/login/SearchInput";
 //引入用户登录框组件
-import Login from "../components/login/Login"
+import Login from "../components/login/Login";
 //引入发布框组件
-import Post from "../components/post/Post"
+import Post from "../components/post/Post";
+//引入文章列表组件
+import NewsList from "../components/news/NewsList";
 export default {
 //import引入的组件需要注入到对象中才能使用
 components: {
@@ -55,6 +60,7 @@ components: {
     SearchInput,
     Login,
     Post,
+    NewsList,
 },
 data() {
 //这里存放数据

@@ -13,7 +13,7 @@
     <!-- tab切换结束 -->
     <!-- 文章输入开始 -->
     <div class="post-text" v-show="activeTab=='wTouTiao'">
-      <textarea class="text-input" name id cols="30" rows="10" placeholder="有什么新鲜事告诉大家"></textarea>
+      <textarea class="text-input" name id cols="30" rows="10"  v-model="tt_content" placeholder="有什么新鲜事告诉大家"></textarea>
       <div class="bottom">
         <div class="imgButton">
           <div class="imgButton-tiitle" @click.stop="toggleUpImgbutton">图片</div>
@@ -30,13 +30,13 @@
             <!-- 上传图片的地方结束 -->
           </div>
         </div>
-        <div class="wTouTiao-release">发布</div>
+        <div class="wTouTiao-release" @click.stop="publishTT">发布</div>
       </div>
     </div>
     <div class="post-text" v-show="activeTab=='article'">
       <input class="post-text-input" type="text" placeholder="请输入内容" />
-      <vue-editor v-model="richContent" class="rich-editor" placeholder="请输入文章"/>
-      <div class="rich-publish">发布</div>
+      <vue-editor  class="rich-editor"  v-model="article_title" placeholder="请输入文章" />
+      <div class="rich-publish" @click.stop="publishArticle">发布</div>
     </div>
     <!-- 文章输入结束 -->
   </div>
@@ -56,6 +56,8 @@ export default {
   data() {
     //这里存放数据
     return {
+      article_title: "", //文章的标题
+      tt_content: "", // 微头条 textarea 内容 
       tabs: [
         {
           id: "wTouTiao",
@@ -78,6 +80,47 @@ export default {
   watch: {},
   //方法集合
   methods: {
+    //文章发布事件
+    publishArticle:function(){
+      if (!this.article_title || !this.richContent) {
+        this.$message({
+          msg: "标题或者内容不能为空"
+        });
+        return false;
+      }
+      this.$axios
+        .post("/createArticle", {
+          content: this.richContent,
+          img: "",
+          title: this.article_title
+        })
+        .then(res => {
+          this.$message({
+            msg: res.msg
+          });
+        });
+    },
+    //头条发布事件
+    publishTT:function(){
+       let content = this.tt_content;
+      if (!content) {
+        this.$message({
+          msg: "微头条内容不能为空"
+        });
+        return false;
+      }
+      this.$axios
+        .post("/createTT", {
+          content: content,
+          imgs: this.upImgs.join(",")
+        })
+        .then(res => {
+          this.$message({
+            msg: res.msg
+          });
+        })
+        .catch(err => err);
+    },
     //删除上传照片事件
     deleteImg: function(index) {
       this.upImgs.splice(index, 1);
@@ -247,6 +290,7 @@ export default {
       height: 100px;
       border: none;
     }
+
     // .rich-editor {
     // }
     .rich-publish {
@@ -259,12 +303,12 @@ export default {
       font-size: 16px;
       color: white;
     }
-    &:after{
-       content: "";
-        display: block;
-        height: 0;
-        clear:both;
-        visibility: hidden;
+    &:after {
+      content: "";
+      display: block;
+      height: 0;
+      clear: both;
+      visibility: hidden;
     }
   }
 }
