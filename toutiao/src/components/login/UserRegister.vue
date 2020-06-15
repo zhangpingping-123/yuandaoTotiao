@@ -1,10 +1,10 @@
-<!-- 登录页面 -->
+<!-- 注册页面 -->
 <template>
   <div class>
     <div class="login-box">
-      <div class="login-title">账号登录</div>
-      <input v-model="username" type="text" placeholder="userName :"/>
-      <input v-model="password" type="password" placeholder="password :"/>
+      <div class="login-title">账号注册</div>
+      <input v-model="username" type="text" placeholder="userName :" />
+      <input v-model="password" type="password" placeholder="password :" />
       <div class="ligin-confirm" @click.stop="confirm">确定</div>
       <div class="bottom">
         <div class="left">
@@ -13,7 +13,7 @@
           <a href="#">隐私条款</a>
         </div>
         <div class="right">
-          <a href="#" @click.prevent.stop="goToUserRegister">注册用户</a>
+          <a href="#" @click.prevent.stop="goToUserLogin">登录</a>
         </div>
       </div>
     </div>
@@ -40,10 +40,10 @@ export default {
   watch: {},
   //方法集合
   methods: {
-      //跳转到注册页面
-      goToUserRegister:function(){
-          this.$router.push({
-              name:"userRegister"
+      //跳转到登录页面
+      goToUserLogin:function(){
+        this.$router.push({
+              name:"userLogin"
           })
       },
       confirm:function(){
@@ -57,7 +57,7 @@ export default {
                 })
             }
             //发送登录后信息返给后台
-            this.$axios.post("/loginCheck",{
+            this.$axios.post("/createUser",{
                 username,
                 password
             })
@@ -69,8 +69,8 @@ export default {
                     //登录成功 
                     //将用户信息保存到localStorege
                     //用户信息 使用Vuex存
-                    this.$store.commit("updateUserInfo",res.wdata)
-                    this.$router.push({"name":"index"});//跳转回首页
+                    // this.$store.commit("updateUserInfo",res.wdata)
+                    this.$router.push({"name":"userLogin"});//跳转回首页
                 }
             })
             .catch(err =>err)
@@ -91,43 +91,43 @@ export default {
 </script>
 <style lang='less' scoped>
 .login-box {
-    width: 400px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    padding: 10px;
+  width: 400px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 10px;
   .login-title {
-      height: 50px;
-      line-height: 50px;
-      text-align: center;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
   }
 
   input {
-      height: 40px;
-      width: 100%;
-      margin-top: 10px;
-      border: 1px solid #ddd;
+    height: 40px;
+    width: 100%;
+    margin-top: 10px;
+    border: 1px solid #ddd;
   }
 
   .ligin-confirm {
-      width: 100%;
-      height: 40px;
-      color: white;
-      background-color: var(--themeColor);
-      margin-top: 10px;
-      text-align: center;
-      line-height: 40px;
-      border-radius: 5px;
+    width: 100%;
+    height: 40px;
+    color: white;
+    background-color: var(--themeColor);
+    margin-top: 10px;
+    text-align: center;
+    line-height: 40px;
+    border-radius: 5px;
   }
 
   .bottom {
-      display: flex;
-      font-size: 12px;
-      justify-content: space-between;
-      margin-top: 10px;
+    display: flex;
+    font-size: 12px;
+    justify-content: space-between;
+    margin-top: 10px;
     .left {
       a {
         color: skyblue;

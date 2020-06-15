@@ -26,7 +26,7 @@
             <!-- 搜索框结束 -->
             <!-- 用户信息/用户登录开始 -->
             <div class="toutiao-user">
-                <UserLogin></UserLogin>
+                <Login></Login>
             </div>
             <!-- 用户信息/用户登录结束 -->
         </div>
@@ -44,7 +44,7 @@ import Nav from "../components/nav/Nav"
 //引入搜索框组件
 import SearchInput from "../components/login/SearchInput"
 //引入用户登录框组件
-import UserLogin from "../components/login/UserLogin"
+import Login from "../components/login/Login"
 //引入发布框组件
 import Post from "../components/post/Post"
 export default {
@@ -53,7 +53,7 @@ components: {
     Header,
     Nav,
     SearchInput,
-    UserLogin,
+    Login,
     Post,
 },
 data() {

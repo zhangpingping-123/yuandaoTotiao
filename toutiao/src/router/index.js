@@ -6,11 +6,21 @@ import VueRouter from "vue-router"
 Vue.use(VueRouter)
 //引入组件
 import Index from "../components/Index"
+import UserLogin from "../components/login/UserLogin.vue"
+import UserRegister from "../components/login/UserRegister.vue"
 //理由配置文件
 let routes = [{
     path:"/",
     name:"index",
     component:Index
+},{
+    path:"/userLogin",
+    name:"userLogin",
+    component:UserLogin
+},{
+    path:"/userRegister",
+    name:"userRegister",
+    component:UserRegister
 }]
 //新建一个VueRouter实例,将routes作为参数传进,同时将路由导出
 export default new VueRouter({

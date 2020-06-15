@@ -35,7 +35,7 @@
     </div>
     <div class="post-text" v-show="activeTab=='article'">
       <input class="post-text-input" type="text" placeholder="请输入内容" />
-      <vue-editor v-model="richContent" class="rich-editor" />
+      <vue-editor v-model="richContent" class="rich-editor" placeholder="请输入文章"/>
       <div class="rich-publish">发布</div>
     </div>
     <!-- 文章输入结束 -->
@@ -247,9 +247,8 @@ export default {
       height: 100px;
       border: none;
     }
-
-    .rich-editor {
-    }
+    // .rich-editor {
+    // }
     .rich-publish {
       width: 150px;
       height: 40px;
