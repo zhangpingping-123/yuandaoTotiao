@@ -2,7 +2,9 @@
 <template>
   <div class="tt-news-list">
     <div class="tt-news-refresh" @click.stop="refresh">点击刷新</div>
-    <div class="tt-news-list-item" v-for="article in articles" :key="article.nid">
+    <div class="tt-news-list-item" v-for="article in articles" 
+    @click.stop="goToNewsDetail(article.nid)"
+    :key="article.nid">
       <div class="left" v-if="article.img">
         <img :src="article.img" alt />
       </div>
@@ -37,6 +39,15 @@ export default {
   watch: {},
   //方法集合
   methods: {
+    //文章详情跳转页面
+    goToNewsDetail:function(nid){
+      console.log(nid);
+      this.$router.push({
+        path:"/newsDetail",query:{
+          nid:nid
+        }
+      })
+    },
     refresh: function() {
       this.$axios
         .post("/getArticles", {

@@ -8,6 +8,7 @@ Vue.use(VueRouter)
 import Index from "../components/Index"
 import UserLogin from "../components/login/UserLogin.vue"
 import UserRegister from "../components/login/UserRegister.vue"
+import newsDetail from "../components/news/NewsDetail.vue"
 //理由配置文件
 let routes = [{
     path:"/",
@@ -21,6 +22,10 @@ let routes = [{
     path:"/userRegister",
     name:"userRegister",
     component:UserRegister
+},{
+    path:"/newsDetail",
+    name:"newsDetail",
+    component:newsDetail 
 }]
 //新建一个VueRouter实例,将routes作为参数传进,同时将路由导出
 export default new VueRouter({

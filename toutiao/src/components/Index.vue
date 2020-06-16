@@ -99,7 +99,6 @@ activated() {}, //如果页面有keep-alive缓存功能，这个函数会触发
        .toutiao-content {
            width: 100%;
            padding: 10px 8% 0px 8%;
-           border: 1px solid #ddd;
            display: flex;
             .left {
                width: 200px;

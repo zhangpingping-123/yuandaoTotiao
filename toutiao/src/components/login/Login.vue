@@ -5,9 +5,9 @@
       <div class="content-text">登录后可以保存您的浏览喜好、评论、收藏，并与APP同步，更可以发布微头条</div>
       <div class="userLogin-button" @click.stop="goToUserLogin">登录</div>
     </div>
-    <div class="toutiao-user-login">
+    <div v-else class="toutiao-user-login">
       <div class="logout" @click="logout">退出登录</div>
-      <div class="imagerWraooer">
+      <div class="imagerWrapper">
         <img :src="userInfo.avator" alt />
       </div>
       <div class="nickname">{{userInfo.nickname}}</div>
@@ -47,6 +47,7 @@ export default {
   watch: {},
   //方法集合
   methods: {
+
     logout: function() {
       this.$axios.post("/logout").then(res => {
         this.$message({
@@ -117,7 +118,7 @@ export default {
         text-align: right;
         }
 
-        .imagerWraooer {
+        .imagerWrapper {
             text-align: center;
             img {
                 width: 50px;

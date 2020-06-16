@@ -69,7 +69,7 @@ export default {
                     //登录成功 
                     //将用户信息保存到localStorege
                     //用户信息 使用Vuex存
-                    this.$store.commit("updateUserInfo",res.wdata)
+                    this.$store.commit('UPDATE_USER_INFO',res.wdata)
                     this.$router.push({"name":"index"});//跳转回首页
                 }
             })
