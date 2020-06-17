@@ -1,0 +1,30 @@
+{
+  "id": "1891477",
+  "name": "m-toutiao",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "351772",
+      "name": "搜索",
+      "font_class": "sousuo",
+      "unicode": "e620",
+      "unicode_decimal": 58912
+    },
+    {
+      "icon_id": "356596",
+      "name": "刷新",
+      "font_class": "shuaxin",
+      "unicode": "e638",
+      "unicode_decimal": 58936
+    },
+    {
+      "icon_id": "12707094",
+      "name": "信息",
+      "font_class": "xinxi_huaban",
+      "unicode": "e692",
+      "unicode_decimal": 59026
+    }
+  ]
+}

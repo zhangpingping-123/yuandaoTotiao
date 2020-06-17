@@ -1,0 +1,138 @@
+.mobile-toutiao {
+    width: 100vw;
+    height: 100vh;
+    .top{
+        width: 100%;
+        position: fixed;
+        z-index: 1;
+        .tt-m-header {
+            background-color: var(--themeColor);
+            display: flex;
+            align-items: center;
+            height: 4rem;
+            padding: 1.5rem;
+            justify-content: space-between;
+            color: white;
+            font-weight: 200;
+          .header-message {
+            font-size: 2rem;
+          }
+      
+          .header-title {
+            font-size: 2rem;
+            font-weight: 600;
+            .icon-shuaxin{
+                font-weight: 300;
+            }
+          }
+      
+          .header-search {
+              .icon-sousuo{
+                font-size: 2rem;
+                
+            }
+          }
+        }
+        .nav-add{
+            width: 3rem;
+            height: 3rem;
+            font-size: 2rem;
+            text-align: center;
+            line-height: 3rem;
+            color: var(--themeColor);
+            float: right;
+        }
+    
+        .tt-m-nav {
+            background-color: #f4f5f6;
+            .nav-box {    
+                overflow-x:scroll;
+                overflow-y: hidden;
+                white-space: nowrap;
+                border-bottom: 1px solid #ddd;
+                .nav-box-item {
+                    display: inline-block;
+                    width: 6rem;
+                    height: 3rem;
+                    line-height: 3rem;
+                    font-size: 1.5rem;
+                    text-align: center;                  
+                }      
+            }
+            .nav-box::-webkit-scrollbar{
+                display: none;
+            }
+        }
+    }   
+    .tt-m-article {
+        position: absolute;
+        top: 7rem;
+        .article-item {
+            height: 10rem;
+            padding: 1.5rem;
+            border-bottom: 0.1rem solid #f8f8f8;
+          .article-item-title {
+            font-weight: 300;
+            font-size: 1.8rem;
+          }      
+          .article-item-bottom {
+              font-size: 1.2rem;
+              color: #afafaf;
+              display: flex;
+              margin-top: 1rem;
+            .article-author {
+                margin-right: 1rem;
+            }      
+            .article-comment {
+                margin-right: 1rem;
+            //   span {      
+            //   }
+            }      
+            .article-date {
+                margin-right: 1rem;
+            }
+          }
+        }
+    }
+    .tt-m-footer {
+        width: 100%;
+        height: 4rem;
+        position: fixed;
+        bottom: 0;
+        padding: 0 1rem;
+        line-height: 4rem;
+        background-color: white;
+        .footer-download {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+          .footer-download-logoWrapper {
+            display: flex;
+            align-items: center;
+            .logo {
+                width: 3rem;
+                height: 3rem;
+                background: url(//s3.bytecdn.cn/growth/fe_sdk/image/banner_toutiao_icon_bce0b302.png);
+                background-repeat: no-repeat;
+                background-size: 100% 100%;
+            }
+      
+            .appName {
+                margin-left: 1rem;
+                color: #656565;
+                font-size: 1.4rem;
+            }
+          }
+      
+          .footer-download-open {
+            text-align: center;
+            line-height: 2rem;
+            color: white;
+            border-radius: 1rem;  
+            width: 6rem;
+            height: 2rem;
+            background-color: var(--themeColor);
+          }
+        }
+      }
+}
