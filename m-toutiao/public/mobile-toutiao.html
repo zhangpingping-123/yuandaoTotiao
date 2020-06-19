@@ -61,90 +61,7 @@
 
         <!-- 文章列表开始 -->
         <section class="tt-m-article">
-            <section class="article-item">
-                <section class="article-item-title">
-                    第一报道 | 同两国领导人通电话，习主席谈到这些大事
-                </section>
-                <section class="article-item-bottom">
-                    <section class="article-author">新华社</section>
-                    <section class="article-comment">
-                        评论 <span>914</span>
-                    </section>
-                    <section class="article-date">2020-06-17 16:25</section>
-                </section>                
-            </section>
-            <section class="article-item">
-                <section class="article-item-title">
-                    第一报道 | 同两国领导人通电话，习主席谈到这些大事
-                </section>
-                <section class="article-item-bottom">
-                    <section class="article-author">新华社</section>
-                    <section class="article-comment">
-                        评论 <span>914</span>
-                    </section>
-                    <section class="article-date">2020-06-17 16:25</section>
-                </section>                
-            </section>
-            <section class="article-item">
-                <section class="article-item-title">
-                    第一报道 | 同两国领导人通电话，习主席谈到这些大事
-                </section>
-                <section class="article-item-bottom">
-                    <section class="article-author">新华社</section>
-                    <section class="article-comment">
-                        评论 <span>914</span>
-                    </section>
-                    <section class="article-date">2020-06-17 16:25</section>
-                </section>                
-            </section>
-            <section class="article-item">
-                <section class="article-item-title">
-                    第一报道 | 同两国领导人通电话，习主席谈到这些大事
-                </section>
-                <section class="article-item-bottom">
-                    <section class="article-author">新华社</section>
-                    <section class="article-comment">
-                        评论 <span>914</span>
-                    </section>
-                    <section class="article-date">2020-06-17 16:25</section>
-                </section>                
-            </section>
-            <section class="article-item">
-                <section class="article-item-title">
-                    第一报道 | 同两国领导人通电话，习主席谈到这些大事
-                </section>
-                <section class="article-item-bottom">
-                    <section class="article-author">新华社</section>
-                    <section class="article-comment">
-                        评论 <span>914</span>
-                    </section>
-                    <section class="article-date">2020-06-17 16:25</section>
-                </section>                
-            </section>
-            <section class="article-item">
-                <section class="article-item-title">
-                    第一报道 | 同两国领导人通电话，习主席谈到这些大事
-                </section>
-                <section class="article-item-bottom">
-                    <section class="article-author">新华社</section>
-                    <section class="article-comment">
-                        评论 <span>914</span>
-                    </section>
-                    <section class="article-date">2020-06-17 16:25</section>
-                </section>                
-            </section>
-            <section class="article-item">
-                <section class="article-item-title">
-                    第一报道 | 同两国领导人通电话，习主席谈到这些大事
-                </section>
-                <section class="article-item-bottom">
-                    <section class="article-author">新华社</section>
-                    <section class="article-comment">
-                        评论 <span>914</span>
-                    </section>
-                    <section class="article-date">2020-06-17 16:25</section>
-                </section>                
-            </section>
+
         </section>
         <!-- 文章列表结束 -->
         <!-- 底部开始 -->
@@ -160,5 +77,80 @@
         <!-- 底部结束 -->
     </section>
     <!-- 移动端主体结束 -->
+
 </body>
+<script src="./js/setRem.js"></script>
+<script src="https://zeptojs.com/zepto.js"></script>
+<script>
+    let page =0;
+    let maxPage;
+    let num=20;
+    //一开始进来的时候
+    let getData=()=>{
+        if(!maxPage ||page<=maxPage){
+            ajax()
+            console.log(page)
+            console.log(maxPage)
+        }
+    }   
+    let ajax=()=>{
+        $.ajax({
+        type:"post",
+        url:"http://tt.linweiqin.com/api/tt/getArticles",
+        data:{
+            lastid:0,
+            page: page++,
+            number:num,
+        },
+        dataType:"json",
+        
+        success(data, status, xhr){
+            console.log(data)
+            let articles =data.articles;
+            console.log(articles)
+            let items_html=articles.map(v=>{
+                return`
+                <a href="./transfer.html?nid=${v.nid}" class="article-item">
+                    <section class="article-item-title">
+                        ${v.title}
+                    </section>
+                    <section class="article-item-bottom">
+                        <section class="article-comment">评论<span>${' '+v.uid}</span></section>
+                        <section class="article-author">${v.type}</section>
+                        <section class="article-date">${v.created_at}</section>
+                    </section>                
+                </a>
+                `
+            })
+            maxPage = parseInt(data.counts/num)
+            $('.tt-m-article').append(items_html);
+        },
+        error(xhr, errorType, console){
+            console.log(error);            
+        },
+        complete(xhr, status){
+            console.log(status);
+        }
+    })
+    }
+    window.addEventListener("scroll", function(){
+
+        let htmlElement =document.documentElement;
+        //获取屏幕可以滚动的高度
+        let scrollHeight = htmlElement.scrollHeight;
+        //获取当前浏览器可视区域的高度
+        let scrollTop = htmlElement.scrollTop;
+        //获取当前浏览器可视区的高度
+        let clientHeight = htmlElement.clientHeight
+        
+        //如果可以滚动的高度减去当前滚动的距离<=当前可视页面的高度时调用
+        //getData函数
+        if(scrollHeight-scrollTop <=clientHeight){
+            console.log(6666)
+            getData()
+        }
+        
+    })
+    getData()
+</script>
 </html>

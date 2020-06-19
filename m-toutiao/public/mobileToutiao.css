@@ -64,6 +64,7 @@
   top: 7rem;
 }
 .mobile-toutiao .tt-m-article .article-item {
+  display: inline-block;
   height: 10rem;
   padding: 1.5rem;
   border-bottom: 0.1rem solid #f8f8f8;

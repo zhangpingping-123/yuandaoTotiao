@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./article.css">
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+        a{
+            text-decoration: none;
+            color: black;
+        }
+    </style>
+</head>
+<body>
+    <div class="tt-article">
+        <section class="tt-article-header">
+            <a href="#" class="header-download">
+                <section class="header-download-logoWrapper">
+                    <section class="logo"></section>
+                    <section class="appName">今日头条</section>
+                </section>
+                <section class="header-download-open">打开</section>
+            </a>
+        </section>
+        <section class="tt-article-content">
+            <section class="article-title">{{title}}</section>
+            <section class="article-middle">
+                <section class="type">{{type}}</section>
+                <section class="date">{{created_at}}</section>
+            </section>
+            <section class="content">{{content}}</section>
+        </section>
+    </div>
+</body>
+<script src="./js/setRem.js"></script>
+<script src="https://zeptojs.com/zepto.js"></script>
+<script>
+    Zepto(function(){
+        //去掉nid
+        let nid = localStorage.getItem("nid");
+        $.ajax({
+            type:"post",
+            data:{
+                nid:nid
+            },
+            url:"http://tt.linweiqin.com/api/tt/getArticleById",
+            dataType:"json",
+            success(data,state,xhr){
+                let article = data.article;
+                console.log(article)
+                $(".article-title").html(article.title)
+                $('.type').html(article.type)
+                $('.date').html(article.created_at)
+                $('.content').html(article.content)
+            }
+        })
+    })
+</script>
+</html>

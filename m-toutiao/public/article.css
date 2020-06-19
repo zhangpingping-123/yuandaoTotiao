@@ -1,0 +1,55 @@
+.tt-article .tt-article-header {
+  width: 100vw;
+  height: 4rem;
+  padding: 0 1rem;
+  line-height: 4rem;
+  background-color: white;
+  border-bottom: 0.1rem solid #ddd;
+}
+.tt-article .tt-article-header .header-download {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.tt-article .tt-article-header .header-download .header-download-logoWrapper {
+  display: flex;
+  align-items: center;
+}
+.tt-article .tt-article-header .header-download .header-download-logoWrapper .logo {
+  width: 3rem;
+  height: 3rem;
+  background: url(//s3.bytecdn.cn/growth/fe_sdk/image/banner_toutiao_icon_bce0b302.png);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+.tt-article .tt-article-header .header-download .header-download-logoWrapper .appName {
+  margin-left: 1rem;
+  color: #656565;
+}
+.tt-article .tt-article-header .header-download .header-download-open {
+  text-align: center;
+  line-height: 2rem;
+  color: white;
+  border-radius: 1rem;
+  width: 6rem;
+  height: 2rem;
+  background-color: #f23746;
+}
+.tt-article .tt-article-content {
+  padding: 1rem;
+}
+.tt-article .tt-article-content .article-title {
+  font-weight: 600;
+  font-size: 2rem;
+  height: 6rem;
+  line-height: 6rem;
+}
+.tt-article .tt-article-content .article-middle {
+  display: flex;
+  justify-content: space-between;
+  color: #ddd;
+}
+.tt-article .tt-article-content .content {
+  font-size: 1.5rem;
+  margin-top: 1rem;
+}
